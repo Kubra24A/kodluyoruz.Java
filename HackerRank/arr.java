@@ -5,16 +5,22 @@ import java.util.Scanner;
 public class arr {
     public static void main(String[] args)
     {
-        short x,y;
-        Scanner input = new Scanner(System.in);
-        x=input.nextShort();
-        int[] arr = new int[x];
-        for(y=0;y<arr.length;y++)
-        {
-            arr[y] = input.nextInt();
+        Scanner scan = new Scanner(System.in);
+        int n = scan.nextInt();
+         
+        
+         int [] a = new int[n];
+         for(int i=0;i<n;i++){
+             a[i] = scan.nextInt();
+             
+         }
+         
+        scan.close();
+
+        // Prints each sequential element in array a
+        for (int i = 0; i < a.length; i++) {
+            System.out.println(a[i]);
         }
-        for ( int value: arr )
-            System.out.println(value);
     }
     
 }
