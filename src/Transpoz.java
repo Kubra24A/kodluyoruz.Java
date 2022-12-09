@@ -5,26 +5,41 @@ package src.Odevler;
 public class Transpoz {
     public static void main(String[] args) {
 
-
-        int[][] list={{1,2,3},{4,5,6},{7,8,9}};
-        System.out.println("Dizi :");
-        for(int j=0; j<list.length; j++ ){
-            for(int t=0; t<list.length; t++){
-                System.out.println(list[j][t]);
-            }
-            System.out.println();
-        }
         
+    
 
-        System.out.println("Transpozu :");
-        for(int j=0 ; j<list.length; j++){
-            for (int t=0; t<list.length; t++){
-                System.out.println(list[j][t]);
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Matrisin satır sayısını giriniz : ");
+        int scott= scan.nextInt();
+        System.out.println("Matrisin sütun sayısını giriniz : ");
+        int kuba = scan.nextInt();
+        int[][] matris = new int[scott][kuba];
+        System.out.print("\n");
+        for (int j = 0; j < scott; j++) {
+            for (int t = 0; t < kuba; t++) {
+                System.out.print((j + 1) + ". satir - " + (t + 1) + ". sutun : ");
+                matris[j][t] = scan.nextInt();
             }
-            System.out.println();
+            System.out.print("\n");
         }
+        System.out.println("Matris :");
+        for (int j = 0; j < scott; j++) {
+            for (int t = 0; t< kuba; t++) {
+                System.out.print("\t" + matris[j][t]);
+            }
+            System.out.print("\n");
+        }
+        System.out.println("Transpoze :");
+        for (int j = 0; j < scott; j++) {
+            for (int t = 0; t <= kuba; t++) {
+                System.out.print("\t" + matris[t][j]);
+            }
+            System.out.print("\n");
+        }
+    
 
-    } 
+
+    }
     
     
 }
