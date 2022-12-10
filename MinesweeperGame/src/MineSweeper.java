@@ -5,57 +5,57 @@ import java.util.Objects;
 
 public class MineSweeper {
     Scanner scanner = new Scanner(System.in);
-    int rowNumber;              // Kullanıcıdan satır sayısı aldık. MineSweeper metotu için
-    int columnNumber;           // Kullanıcıdan sütun sayısı aldık. MineSweeper metotu için
-    String [][] mineMap;        // Mayınları atayacağım harita.
-    String [][] gameMap;        // Kullanıcının oynacağı harita.
-    int mineNumber;             // Mayın Sayısı
+    int rowNumber;
+    int columnN;
+    String [][] mineMap;
+    String [][] gameMap;
+    int mineN;
 
 
 
-    MineSweeper(int rowNumber, int columnNumber) {
+    MineSweeper(int rowNumber, int columnN) {
         this.rowNumber = rowNumber;
-        this.columnNumber = columnNumber;
-        this.mineMap = new String [rowNumber][columnNumber];
-        this.gameMap = new String [rowNumber][columnNumber];
-        this.mineNumber = (rowNumber * columnNumber) / 4;
+        this.columnN = columnN;
+        this.mineMap = new String [rowNumber][columnN];
+        this.gameMap = new String [rowNumber][columnN];
+        this.mineN = (rowNumber * columnN) / 4;
     }
 
     void printMap() {
-        for (int i = 0; i < rowNumber; i++) {
-            for (int j = 0; j < columnNumber; j++) {
-                System.out.print(this.gameMap[i][j] + " ");
+        for (int k = 0; k < rowNumber; k++) {
+            for (int j = 0; j < columnN; j++) {
+                System.out.print(this.gameMap[k][j] + " ");
             }
             System.out.println();
         }
     }
     void gameMap(){
-        for (int i = 0; i < rowNumber; i++) {
-            for (int j = 0; j < columnNumber; j++) {
-                this.gameMap[i][j] = "✈";
+        for (int k = 0; k < rowNumber; k++) {
+            for (int j = 0; j < columnN; j++) {
+                this.gameMap[k][j] = "✈";
             }
         }
     }
     public void plantedMine() {
-        Random rand = new Random();
-        for(int i = 0; i < mineNumber; i++){
-            int randomRow = rand.nextInt(rowNumber);
-            int randomColumn = rand.nextInt(columnNumber);
+        Random rands = new Random();
+        for(int k = 0; k < mineN; k++){
+            int randomRow = rands.nextInt(rowNumber);
+            int randomColumn = rands.nextInt(columnN);
 
             if( this.mineMap[randomRow][randomColumn] != "☠") {
                 this.mineMap[randomRow][randomColumn] = "☠";
             }else {
-                i--;
+                k--;
             }
         }
 
 
-        for(int i = 0; i < rowNumber; i++){
-            for(int j = 0; j < columnNumber; j++){
-                if(this.mineMap[i][j] != "☠"){
-                    this.mineMap[i][j] = "✈";
+        for(int k = 0; k < rowNumber; k++){
+            for(int j = 0; j < columnN; j++){
+                if(this.mineMap[k][j] != "☠"){
+                    this.mineMap[k][j] = "✈";
                 }
-                System.out.print(this.mineMap[i][j] + " ");
+                System.out.print(this.mineMap[k][j] + " ");
             }
             System.out.println();
         }
@@ -63,16 +63,16 @@ public class MineSweeper {
 
 
     void printMineMap(){
-        for(int i = 0; i < rowNumber; i++){
-            for(int j = 0; j < columnNumber; j++){
-                System.out.print(this.mineMap[i][j] + " ");
+        for(int k = 0; k < rowNumber; k++){
+            for(int j = 0; j < columnN; j++){
+                System.out.print(this.mineMap[k][j] + " ");
             }
             System.out.println();
         }
     }
 
     void run(){
-        int totalMove = (rowNumber * columnNumber) - mineNumber;
+        int totalMove = (rowNumber * columnN) - mineN;
         Scanner input = new Scanner(System.in);
 
         gameMap();
@@ -88,44 +88,44 @@ public class MineSweeper {
             printMap();
 
             System.out.print("Enter Row: ");
-            int row = input.nextInt();
+            int rowScot = input.nextInt();
 
             System.out.print("Enter Column : ");
-            int col = input.nextInt();
+            int colK = input.nextInt();
 
 
-            if ((row < 0 || row >= rowNumber) || (col < 0 || col >= columnNumber)) {
+            if ((rowScot< 0 || rowScot >= rowNumber) || (colK < 0 || colK >= columnN)) {
                 System.out.println("You Entered Incorrectly, Please enter the correct index number!");
                 continue;
             } else {
-                if (this.mineMap[row][col] == "☠") {
+                if (this.mineMap[rowScot][colK] == "☠") {
                     System.out.println("Game Over!!");
                     printMineMap();
                     break;
-                }if( ! this.gameMap[row][col].equals("✈") ){
+                }if( ! this.gameMap[rowScot][colK].equals("✈") ){
                     System.out.println("You've already made this move !");
                     continue;
                 }else{
-                    int minusRow = (row - 1), plusRow = (row + 1);
-                    int minusCol = (col - 1), plusCol = (col + 1);
+                    int mRow = (rowScot - 1), plusRow = (rowScot + 1);
+                    int Colms = (colK - 1), plusCol = (colK+ 1);
 
-                    if ( (minusRow < 0) || (minusCol < 0) ){
-                        minusRow = 0;
-                        minusCol = 0;
+                    if ( (mRow < 0) || (Colms < 0) ){
+                        mRow = 0;
+                        Colms = 0;
                     }
-                    if( (plusRow >= rowNumber) || (plusCol >= columnNumber) ){
-                        plusRow = row;
-                        plusCol = col;
+                    if( (plusRow >= rowNumber) || (plusCol >= columnN) ){
+                        plusRow = rowScot;
+                        plusCol = colK;
                     }
-                    for(int i = minusRow; i <= plusRow; i++){
-                        for (int j = minusCol; j<= plusCol; j++){
+                    for(int i = mRow; i <= plusRow; i++){
+                        for (int j = Colms; j<= plusCol; j++){
                             if(this.mineMap[i][j] == "☠"){
                                 mineCounter++;
                             }
                         }
                     }
                     String convertMineCounter = String.valueOf(mineCounter);
-                    this.gameMap[row][col] = convertMineCounter;
+                    this.gameMap[rowScot][colK] = convertMineCounter;
                     totalMove--;
                 }
             }
